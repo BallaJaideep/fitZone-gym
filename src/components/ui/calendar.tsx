@@ -44,9 +44,27 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ..._props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ..._props }) => <ChevronRight className="h-4 w-4" />,
-      }}
+  Nav: ({ onPreviousClick, onNextClick }) => (
+    <div className="flex items-center justify-between px-1">
+      <button
+        type="button"
+        onClick={onPreviousClick}
+        className="inline-flex h-7 w-7 items-center justify-center rounded-md hover:bg-muted"
+      >
+        <ChevronLeft className="h-4 w-4" />
+      </button>
+
+      <button
+        type="button"
+        onClick={onNextClick}
+        className="inline-flex h-7 w-7 items-center justify-center rounded-md hover:bg-muted"
+      >
+        <ChevronRight className="h-4 w-4" />
+      </button>
+    </div>
+  ),
+}}
+
       {...props}
     />
   );
