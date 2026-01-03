@@ -1,35 +1,44 @@
 "use client";
 
-import { useToast } from "@/hooks/use-toast";
+// ✅ Changed from useToast to sonner
+import { toast } from "sonner"; 
 import { Button } from "@/components/ui/button";
 import { BellRing, CheckCircle2 } from "lucide-react";
 
-export function ToastDemo() {
-  const { toast } = useToast();
-
+export default function ToastDemo() {
   const handleNotify = () => {
-    toast({
-      title: "Workout Reminder Set",
-      description: "We'll notify you 15 minutes before your HIIT session.",
-      // In Next.js/Shadcn, you can pass custom components to the action area
-      action: (
-        <div className="flex items-center gap-1 bg-primary/10 px-2 py-1 rounded text-primary">
-          <CheckCircle2 className="h-4 w-4" />
-          <span className="text-[10px] font-bold uppercase tracking-widest">Active</span>
-        </div>
-      ),
+    // ✅ Updated to use Sonner's toast function
+    toast.success("Notification Sent!", {
+      description: "You have successfully subscribed to FitZone updates.",
+      icon: <CheckCircle2 className="h-5 w-5 text-green-500" />,
+    });
+  };
+
+  const handleAlert = () => {
+    toast("System Alert", {
+      description: "New workout classes are now available in your area.",
+      icon: <BellRing className="h-5 w-5 text-primary" />,
     });
   };
 
   return (
-    <Button
-      variant="outline"
-      size="lg"
-      onClick={handleNotify}
-      className="group transition-all duration-300 hover:border-primary"
-    >
-      <BellRing className="mr-2 h-4 w-4 group-hover:animate-bounce transition-transform" />
-      Get Workout Reminders
-    </Button>
+    <div className="flex flex-wrap gap-4 p-4">
+      <Button 
+        onClick={handleNotify}
+        className="bg-primary hover:bg-primary/90 font-bold"
+      >
+        <CheckCircle2 className="mr-2 h-4 w-4" />
+        Success Toast
+      </Button>
+
+      <Button 
+        variant="outline"
+        onClick={handleAlert}
+        className="border-primary text-primary font-bold"
+      >
+        <BellRing className="mr-2 h-4 w-4" />
+        Show Alert
+      </Button>
+    </div>
   );
 }
