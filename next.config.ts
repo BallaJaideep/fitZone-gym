@@ -1,17 +1,29 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* 1. Required for GitHub Pages */
-  output: "export",
-  basePath: "/fitZone-gym",
-  assetPrefix: "/fitZone-gym/",
-
+  /* 1. Standard Output (Removes the sub-directory lock) */
+  // We remove 'output: export', 'basePath', and 'assetPrefix' for local development
+  
   reactStrictMode: true,
   poweredByHeader: false,
 
-  /* 2. Disable Image Optimization (IMPORTANT) */
+  /* 2. Enable Image Optimization for Unsplash/Pexels */
   images: {
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
 
   /* 3. Experimental Optimizations */
