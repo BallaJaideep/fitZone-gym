@@ -12,10 +12,7 @@ import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import { cn } from "@/lib/utils";
 
-/** * FONT OPTIMIZATION
- * Replaces the <link> tags from your index.html.
- * Next.js self-hosts these fonts for better performance.
- */
+/** * FONT OPTIMIZATION */
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -23,8 +20,7 @@ const poppins = Poppins({
   display: "swap",
 });
 
-/** * VIEWPORT CONFIGURATION
- */
+/** * VIEWPORT CONFIGURATION */
 export const viewport: Viewport = {
   themeColor: "#111111",
   width: "device-width",
@@ -32,7 +28,7 @@ export const viewport: Viewport = {
 };
 
 /** * METADATA API
- * Replaces all <meta> and <title> tags from your index.html.
+ * Note: Updated metadataBase to support GitHub Pages sub-directory structure.
  */
 export const metadata: Metadata = {
   title: {
@@ -41,16 +37,17 @@ export const metadata: Metadata = {
   },
   description: "Premium fitness center offering personal training, group classes, and state-of-the-art equipment. Join FitZone Gym today.",
   authors: [{ name: "MystryMind Innovations" }],
-  metadataBase: new URL("https://fitzone.com"),
+  // Dynamically set based on your deployment environment
+  metadataBase: new URL("https://your-username.github.io/fitZone-gym"),
   openGraph: {
     title: "FitZone Gym - Premium Fitness Center",
     description: "Transform your body with expert trainers and world-class facilities",
-    url: "https://fitzone.com",
+    url: "https://your-username.github.io/fitZone-gym",
     siteName: "FitZone Gym",
     type: "website",
     images: [
       {
-        url: "https://lovable.dev/opengraph-image-p98pqg.png",
+        url: "/opengraph-image.png", // Next.js will resolve this relative to metadataBase
         width: 1200,
         height: 630,
         alt: "FitZone Gym Training Facility",
@@ -62,7 +59,6 @@ export const metadata: Metadata = {
     title: "FitZone Gym",
     description: "Transform your body with expert trainers.",
     site: "@fitzone_gym",
-    images: ["https://lovable.dev/opengraph-image-p98pqg.png"],
   },
 };
 

@@ -1,33 +1,21 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* 1. Security & Stability */
-  reactStrictMode: true, // Catches common bugs early in development
-  poweredByHeader: false, // Security: Hides that you are using Next.js from attackers
+  /* 1. Required for GitHub Pages */
+  output: "export",
+  basePath: "/fitZone-gym",
+  assetPrefix: "/fitZone-gym/",
 
-  /* 2. Image Optimization (Fixes your Unsplash Error) */
+  reactStrictMode: true,
+  poweredByHeader: false,
+
+  /* 2. Disable Image Optimization (IMPORTANT) */
   images: {
-    formats: ["image/avif", "image/webp"], // Optimizes for modern browsers
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        port: "",
-        pathname: "/**",
-      },
-      // Adding support for common fitness image CDNs
-      {
-        protocol: "https",
-        hostname: "images.pexels.com",
-        port: "",
-        pathname: "/**",
-      },
-    ],
+    unoptimized: true,
   },
 
-  /* 3. Turbopack / Experimental Features */
+  /* 3. Experimental Optimizations */
   experimental: {
-    // Optimizes package imports for faster dev/build times
     optimizePackageImports: [
       "lucide-react",
       "@radix-ui/react-icons",
@@ -37,13 +25,11 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  /* 4. Typescript & Linting */
+  /* 4. TypeScript & ESLint */
   typescript: {
-    // Set to true if you want to allow production builds even with TS errors
-    ignoreBuildErrors: false, 
+    ignoreBuildErrors: false,
   },
   eslint: {
-    // Runs ESLint during builds to ensure code quality
     ignoreDuringBuilds: false,
   },
 };
